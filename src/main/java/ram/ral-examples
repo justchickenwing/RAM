@@ -1,0 +1,64 @@
+/**
+ * e.g. addition program
+ * 16 + 2
+ * startpoint 0
+ */
+ 
+Memory:
+16
+2
+
+RAL-Abfolge:
+LDA 0
+ADD 1
+HLT
+
+
+/**
+ * e.g. division program
+ * 16 / 2
+ * startpoint: 2 (LDA 0)
+ */
+ 
+Memory:
+16
+2
+1
+0
+
+RAL-Abfolge:
+LDA 3
+HLT
+LDA 0
+JMZ 0
+SUB 1
+STA 0
+LDA 3
+ADD 2
+STA 3
+JMP 2
+
+/**
+ * e.g. multiply program
+ * 5 * 5
+ * startpoint: 2 (LDA 0)
+ */
+
+Memory:
+5
+5
+1
+0
+
+RAL-Abfolge:
+LDA 3
+HLT
+LDA 1
+JMZ 0
+SUB 2
+STA 1
+LDA 3
+ADD 0
+STA 3
+JMZ 0
+JMP 2

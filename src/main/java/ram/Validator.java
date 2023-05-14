@@ -8,8 +8,8 @@ public class Validator {
 	 * Function to validate the command input.
 	 * Checks every index of the program with the isValidCommand function.
 	 * 
-	 * @param program, String Array
-	 * @return true = valid program, false = not valid
+	 * @param program - ral program input
+	 * @return true if valid program; false otherwise
 	 */
 	public static boolean isValidProgram(String[] program) {
 		boolean isValid = true;
@@ -28,8 +28,8 @@ public class Validator {
 	 * Then the String gets snipped, so just the first three letters will be validated.
 	 * In a next step it compares the snipped command with the legal commands.
 	 * 
-	 * @param command String
-	 * @return is valid = true , not valid = false
+	 * @param command - the command which is to validate
+	 * @return true if valid command; false otherwise
 	 */
 	public static boolean isValidCommand(String command) {
 		if (command.length() >= 3) {
@@ -46,12 +46,8 @@ public class Validator {
 				return true;
 			}
 		}
-		
 		throw new IllegalArgumentException(
 				"Unknown command: " + command
 		);
-	}
-	
-	// isValidIntArray
-
+	}	
 }
