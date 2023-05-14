@@ -2,13 +2,19 @@ package gui;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JList;
 import javax.swing.JSplitPane;
 import javax.swing.JScrollPane;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.WindowConstants;
+
+import actions.ClickStart;
 import ram.TextFileReader;
 
 public class RamFrame extends javax.swing.JFrame {
@@ -26,18 +32,21 @@ public class RamFrame extends javax.swing.JFrame {
     private JLabel inputLabel = new JLabel();
     private JLabel memLabel = new JLabel();
     private JLabel ralLabel = new JLabel();
+    private JButton startButton = new JButton();
     private JLabel outputLabel = new JLabel();
+    
 	private String[] ralArray;
 	private String[] memArray;
-	Dimension dimension = new Dimension(100, 200);
+	Dimension dimension = new Dimension(80, 200);
  
+	private int ac = 0;
 	/**
 	 * Constructor of the RamFrame.
 	 * @param ralFile path of the file where the ral commands are stored
 	 * @param memoryFile path of the file where the memory is stored
 	 * @param ac the displayed output of the program
 	 */
-    public RamFrame(String ralFile, String memoryFile, int ac) {
+    public RamFrame(String ralFile, String memoryFile) {
     	ralArray = TextFileReader.convertFileToStringArray(ralFile);
         memArray = TextFileReader.convertFileToStringArray(memoryFile);
         
@@ -54,7 +63,8 @@ public class RamFrame extends javax.swing.JFrame {
         inputLabel.setText ( "Input" );
         memLabel.setText( "Memory:" );
         ralLabel.setText( "RAL-Befehle:" );
-        outputLabel.setText ( "Output = " + ac ) ;
+        outputLabel.setText ( "Output = ");
+        
         
         JList<Object> ralList = new JList<Object>(ralArray);
         JList<Object> memList = new JList<Object>(memArray);
@@ -78,7 +88,16 @@ public class RamFrame extends javax.swing.JFrame {
         midXPanel.setLeftComponent(memYPanel);
         contentPanel.add(midXPanel);
         
-        contentPanel.add (outputLabel);
+        startButton.setText("start program");
+        startButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+            	ac = ClickStart.clicked();
+            	outputLabel.setText ( "Output = " + ac) ;
+            }
+        });
+        contentPanel.add(startButton);
+        
+        contentPanel.add(outputLabel);
         
         this.getContentPane().add(contentPanel);
 
