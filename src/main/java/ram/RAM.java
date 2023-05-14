@@ -82,15 +82,15 @@ public class RAM extends Steuereinheit {
 
 
 	
-	public static void main(String[] args) {
-		String ralFile = "src\\main\\java\\ram\\ralfile.txt";
-		String memoryFile = "src\\main\\java\\ram\\memoryfile.txt";
-		String[] ral = TextFileReader.convertFileToStringArray(ralFile);
-		int[] mem = TextFileReader.convertFileToIntArray(memoryFile);
-		Memory memory = new Memory(mem);
-		RAM ram = new RAM(memory, 0);
-		System.out.println(ram.startProgram(ral));
-	}
+//	public static void main(String[] args) {
+//		String ralFile = "src\\main\\java\\ram\\ralfile.txt";
+//		String memoryFile = "src\\main\\java\\ram\\memoryfile.txt";
+//		String[] ral = TextFileReader.convertFileToStringArray(ralFile);
+//		int[] mem = TextFileReader.convertFileToIntArray(memoryFile);
+//		Memory memory = new Memory(mem);
+//		RAM ram = new RAM(memory, 0);
+//		System.out.println(ram.startProgram(ral));
+//	}
 //		/**
 //		 * e.g. of addition program
 //		 * starts on the 2. index (LDA 0)
