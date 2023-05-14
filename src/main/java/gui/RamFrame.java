@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JList;
 import javax.swing.JSplitPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.WindowConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import actions.ClickStart;
 import ram.TextFileReader;
@@ -40,6 +43,7 @@ public class RamFrame extends javax.swing.JFrame {
 	Dimension dimension = new Dimension(80, 200);
  
 	private int ac = 0;
+	private int sp;
 	/**
 	 * Constructor of the RamFrame.
 	 * @param ralFile path of the file where the ral commands are stored
@@ -65,9 +69,17 @@ public class RamFrame extends javax.swing.JFrame {
         ralLabel.setText( "RAL-Befehle:" );
         outputLabel.setText ( "Output = ");
         
-        
-        JList<Object> ralList = new JList<Object>(ralArray);
+        final JList<Object> ralList = new JList<Object>(ralArray);
         JList<Object> memList = new JList<Object>(memArray);
+        ralList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        memList.setEnabled(false);
+        ralList.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				sp = ralList.getSelectedIndex();
+			}
+		});
+        ralList.setSelectedIndex(0);
         memYPanel.setPreferredSize(dimension);
         memYPanel.setBackground(Color.white);
         ralYPanel.setPreferredSize(dimension);
@@ -91,7 +103,7 @@ public class RamFrame extends javax.swing.JFrame {
         startButton.setText("start program");
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-            	ac = ClickStart.clicked();
+            	ac = ClickStart.clicked(sp);
             	outputLabel.setText ( "Output = " + ac) ;
             }
         });
