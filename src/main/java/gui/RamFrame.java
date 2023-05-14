@@ -5,6 +5,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JList;
+import javax.swing.JSplitPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JScrollPane;
+
+import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.WindowConstants;
 
@@ -13,7 +19,8 @@ import ram.TextFileReader;
 public class RamFrame extends javax.swing.JFrame {
  
     private JPanel contentPanel = new JPanel();
-    private JPanel midXPanel = new JPanel();
+    private JSplitPane midXPanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+
     private JPanel memYPanel = new JPanel();
     private JPanel ralYPanel = new JPanel();
 
@@ -25,6 +32,8 @@ public class RamFrame extends javax.swing.JFrame {
 	
 	private String[] ralArray;
 	private String[] memArray;
+	
+	Dimension dimension = new Dimension(100, 200);
 
  
     public RamFrame(String ralFile, String memoryFile, int ac) {
@@ -37,12 +46,12 @@ public class RamFrame extends javax.swing.JFrame {
         
         contentPanel.setLayout( new BoxLayout(
                 contentPanel, BoxLayout.Y_AXIS ) );
-        midXPanel.setLayout( new BoxLayout(
-        		midXPanel, BoxLayout.X_AXIS ) );
         memYPanel.setLayout( new BoxLayout(
         		memYPanel, BoxLayout.Y_AXIS ) );
         ralYPanel.setLayout( new BoxLayout(
         		ralYPanel, BoxLayout.Y_AXIS ) );
+        
+        
         
         inputLabel.setText ( "Input" );
         memLabel.setText( "Memory:" );
@@ -51,26 +60,34 @@ public class RamFrame extends javax.swing.JFrame {
         
         JList<Object> ralList = new JList<Object>(ralArray);
         JList<Object> memList = new JList<Object>(memArray);
+        memYPanel.setPreferredSize(dimension);
+        memYPanel.setBackground(Color.white);
+        ralYPanel.setPreferredSize(dimension);
+        ralYPanel.setBackground(Color.white);
+
+        
         
         contentPanel.add (inputLabel);
 
         memYPanel.add(memLabel);
-
-        memYPanel.add(memList);
-        
-        midXPanel.add(memYPanel);
-        
+        JScrollPane memScrollPane = new JScrollPane();
+        memScrollPane.setViewportView(memList);
+        memYPanel.add(memScrollPane);
         ralYPanel.add(ralLabel);
+        JScrollPane ralScrollPane = new JScrollPane();
+        ralScrollPane.setViewportView(ralList);
+        ralYPanel.add(ralScrollPane);
         
-        ralYPanel.add(ralList);
         
-        midXPanel.add(ralYPanel);
-        
+        midXPanel.setRightComponent(ralYPanel);
+        midXPanel.setLeftComponent(memYPanel);
         contentPanel.add(midXPanel);
+        
+        contentPanel.add (outputLabel);
+        
 
-        contentPanel.add ( outputLabel ) ;
 
-        this.getContentPane().add ( contentPanel ) ;
+        this.getContentPane().add(contentPanel);
 
         pack();
     }
