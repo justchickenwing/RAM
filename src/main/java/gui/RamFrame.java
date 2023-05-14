@@ -32,6 +32,7 @@ public class RamFrame extends javax.swing.JFrame {
         memArray = TextFileReader.convertFileToStringArray(memoryFile);
         
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("myRAM");
 //        setSize(300, 300);
         
         contentPanel.setLayout( new BoxLayout(
@@ -48,8 +49,8 @@ public class RamFrame extends javax.swing.JFrame {
         ralLabel.setText( "RAL-Befehle:" );
         outputLabel.setText ( "Output = " + ac ) ;
         
-        JList ralList = new JList(ralArray);
-        JList memList = new JList(memArray);
+        JList<Object> ralList = new JList<Object>(ralArray);
+        JList<Object> memList = new JList<Object>(memArray);
         
         contentPanel.add (inputLabel);
 

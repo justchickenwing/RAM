@@ -28,7 +28,7 @@ public class RAM extends Steuereinheit {
 	 * @param programString Array with the RAL commands
 	 * @return result of the program
 	 */
-	public int runProgram(String[] program) {
+	private int runProgram(String[] program) {
 		while (running) {
 			if (!program[pc].contains("HLT")) {
 				int param = Integer.parseInt(program[pc].substring(4));
