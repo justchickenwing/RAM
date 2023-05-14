@@ -1,3 +1,6 @@
 LDA 0
 ADD 1
+ADD 1
+STA 2
+ADD 2
 HLT

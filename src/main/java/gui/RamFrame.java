@@ -8,6 +8,8 @@ import javax.swing.JList;
 
 import javax.swing.WindowConstants;
 
+import ram.TextFileReader;
+
 public class RamFrame extends javax.swing.JFrame {
  
     private JPanel contentPanel = new JPanel();
@@ -20,14 +22,17 @@ public class RamFrame extends javax.swing.JFrame {
     private JLabel ralLabel = new JLabel();
 
     private JLabel outputLabel = new JLabel();
-
-    private String[] ralArray = { "LDA 0", "ADD 1", "HLT" };
-    private String[] memArray = { "3", "4", "5"};
+	
+	private String[] ralArray;
+	private String[] memArray;
 
  
-    public RamFrame() {
+    public RamFrame(String ralFile, String memoryFile, int ac) {
+    	ralArray = TextFileReader.convertFileToStringArray(ralFile);
+        memArray = TextFileReader.convertFileToStringArray(memoryFile);
+        
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(300, 300);
+//        setSize(300, 300);
         
         contentPanel.setLayout( new BoxLayout(
                 contentPanel, BoxLayout.Y_AXIS ) );
@@ -41,7 +46,7 @@ public class RamFrame extends javax.swing.JFrame {
         inputLabel.setText ( "Input" );
         memLabel.setText( "Memory:" );
         ralLabel.setText( "RAL-Befehle:" );
-        outputLabel.setText ( "Output" ) ;
+        outputLabel.setText ( "Output = " + ac ) ;
         
         JList ralList = new JList(ralArray);
         JList memList = new JList(memArray);
@@ -66,5 +71,6 @@ public class RamFrame extends javax.swing.JFrame {
 
         this.getContentPane().add ( contentPanel ) ;
 
+        pack();
     }
 }
