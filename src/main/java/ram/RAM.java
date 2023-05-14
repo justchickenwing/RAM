@@ -29,51 +29,56 @@ public class RAM extends Steuereinheit {
 	 * @return result of the program
 	 */
 	private int runProgram(String[] program) {
+		System.out.println("_oO- START -Oo_");
+		System.out.println("|             |");
 		while (running) {
 			if (!program[pc].contains("HLT")) {
 				int param = Integer.parseInt(program[pc].substring(4));
 				
 				if (program[pc].contains("ADD")) {
 					ADD(param);
-					System.out.println(program[pc]);
+					System.out.println("|    " + program[pc] + "    |");
 					pc++;
 				} else if (program[pc].contains("SUB")) {
 					SUB(param);
-					System.out.println(program[pc]);
+					System.out.println("|    " + program[pc] + "    |");
 					pc++;
 				} else if (program[pc].contains("LDA")) {
 					LDA(param);
-					System.out.println(program[pc]);
+					System.out.println("|    " + program[pc] + "    |");
 					pc++;
 				} else if (program[pc].contains("STA")) {
 					STA(param);
-					System.out.println(program[pc]);
+					System.out.println("|    " + program[pc] + "    |");
 					pc++;
 				} else if (program[pc].contains("LDI")) {
 					LDI(param);
-					System.out.println(program[pc]);
+					System.out.println("|    " + program[pc] + "    |");
 					pc++;
 				} else if (program[pc].contains("LDA")) {
 					LDA(param);
-					System.out.println(program[pc]);
+					System.out.println("|    " + program[pc] + "    |");
 					pc++;
 				} else if (program[pc].contains("STI")) {
 					STI(param);
-					System.out.println(program[pc]);
+					System.out.println("|    " + program[pc] + "    |");
 					pc++;
 				} else if (program[pc].contains("JMP")) {
 					JMP(param);
-					System.out.println(program[pc]);
+					System.out.println("|    " + program[pc] + "    |");
 					pc=param;
 				} else if (program[pc].contains("JMZ")) {
 					if (JMZ()) {
-						System.out.println(program[pc]);
+						System.out.println("|    " + program[pc] + "    |");
 						pc=param;
 					} else {
 						pc++;
 					}
 				}
 			} else {
+				System.out.println("|    " + program[pc] + "      |");
+				System.out.println("|             |");
+				System.out.println("°---- END ----°");
 				running = HLT();
 			}
 		}
