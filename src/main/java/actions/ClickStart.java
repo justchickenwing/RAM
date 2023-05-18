@@ -1,11 +1,10 @@
 package actions;
+import ram.File;
 import ram.Memory;
 import ram.RAM;
 import ram.TextFileReader;
 
 public class ClickStart {
-	static String ralFile = "src\\main\\java\\ram\\ralfile.txt";
-	static String memoryFile = "src\\main\\java\\ram\\memoryfile.txt";
 	/**
 	 * function that starts the ram-machine.
 	 * action for the "start program" button.
@@ -14,8 +13,8 @@ public class ClickStart {
 	 * @return the value that is stored in the ac when the program is finished.
 	 */
 	public static int clicked(int sp) {
-		String[] ral = TextFileReader.convertFileToStringArray(ralFile);
-		int[] mem = TextFileReader.convertFileToIntArray(memoryFile);
+		String[] ral = TextFileReader.convertFileToStringArray(File.ralFile.getPath());
+		int[] mem = TextFileReader.convertFileToIntArray(File.memoryFile.getPath());
 		Memory memory = new Memory(mem);
 		RAM ram = new RAM(memory, sp);
 		return ram.startProgram(ral);

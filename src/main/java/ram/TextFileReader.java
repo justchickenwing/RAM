@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import actions.Alert;
 public class TextFileReader {
-	
 	private static BufferedReader br;
     /**
      * private constructor to avoid initializing out of the class
@@ -22,6 +21,24 @@ public class TextFileReader {
 		} catch (FileNotFoundException e) {
 			Alert.show("File not found:\n" + filename);	
 		}
+    }
+    /**
+     * Counts the number of lines in a file.
+     * 
+     * @param filename - the file which lines has to be counted.
+     * @return number of lines.
+     */
+    private static int countLines(String filename) {
+    	readFile(filename);
+    	int counter = 0;
+        try(BufferedReader br = new BufferedReader(new FileReader(filename))) {
+			while (br.readLine() != null) {
+			    counter++;
+			}
+		} catch (IOException e) {
+			Alert.show("Invalid file!\nPlease check your file:\n" + filename);
+		}
+    	return counter;
     }
     /**
      * Converts the file to a String Array
@@ -63,23 +80,5 @@ public class TextFileReader {
 				}
             }
     	return inArray;
-    }
-    /**
-     * Counts the number of lines in a file.
-     * 
-     * @param filename - the file which lines has to be counted.
-     * @return number of lines.
-     */
-    private static int countLines(String filename) {
-    	readFile(filename);
-    	int counter = 0;
-        try(BufferedReader br = new BufferedReader(new FileReader(filename))) {
-			while (br.readLine() != null) {
-			    counter++;
-			}
-		} catch (IOException e) {
-			Alert.show("Invalid file!\nPlease check your file:\n" + filename);
-		}
-    	return counter;
     }
 }
