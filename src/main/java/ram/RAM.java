@@ -64,7 +64,7 @@ public class RAM extends Steuereinheit {
 					System.out.println("|    " + program[pc] + "    |");
 					pc++;
 				} else if (program[pc].contains("JMP")) {
-					JMP(param);
+					JMP();
 					System.out.println("|    " + program[pc] + "    |");
 					pc=param;
 				} else if (program[pc].contains("JMZ")) {

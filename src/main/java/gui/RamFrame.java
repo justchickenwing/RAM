@@ -2,6 +2,7 @@ package gui;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JList;
 import javax.swing.JSplitPane;
@@ -18,7 +19,7 @@ import actions.ClickStart;
 import ram.File;
 import ram.TextFileReader;
 
-public class RamFrame extends javax.swing.JFrame {
+public class RamFrame extends JFrame {
     /**
 	 * Declare a serialVersionUID to verify that 
 	 * the sender and receiver of a serialized 
@@ -38,10 +39,11 @@ public class RamFrame extends javax.swing.JFrame {
     
 	private String[] ralArray;
 	private String[] memArray;
-	Dimension dimension = new Dimension(80, 200);
+	Dimension dimension = new Dimension(100, 200);
  
 	private int ac = 0;
 	private int sp;
+	private ClickStart cs = new ClickStart();
 	/**
 	 * Constructor of the RamFrame.
 	 * @param ralFile path of the file where the ral commands are stored
@@ -54,6 +56,7 @@ public class RamFrame extends javax.swing.JFrame {
         // Frame conf
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("myRAM");
+        setLocationRelativeTo(null);
         // Layout of the panels
         contentPanel.setLayout( new BoxLayout(
                 contentPanel, BoxLayout.Y_AXIS ) );
@@ -106,8 +109,8 @@ public class RamFrame extends javax.swing.JFrame {
         startButton.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent evt) {
-            	ac = ClickStart.clicked(sp);
-            	outputLabel.setText ( "Output = " + ac) ;
+            	ac = cs.clicked(sp);
+            	outputLabel.setText("Output = " + ac) ;
             }
         });
         contentPanel.add(startButton);

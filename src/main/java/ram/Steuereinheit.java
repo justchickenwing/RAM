@@ -64,7 +64,7 @@ public abstract class Steuereinheit {
 	 * jumps to the X marked instruction in the program.
 	 * @param instruktion - number of instruction
 	 */
-	public void JMP(int instruktion) {
+	public void JMP() {
 	}
 	/**
 	 * jumps to the X-marked instruction in the program if the AC is equal to 0.

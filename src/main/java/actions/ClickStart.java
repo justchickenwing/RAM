@@ -5,6 +5,10 @@ import ram.RAM;
 import ram.TextFileReader;
 
 public class ClickStart {
+	private String[] ral;
+	private int[] mem;
+	private Memory memory;
+	private RAM ram;
 	/**
 	 * function that starts the ram-machine.
 	 * action for the "start program" button.
@@ -12,11 +16,11 @@ public class ClickStart {
 	 * @param sp defines the start point of the ral program.
 	 * @return the value that is stored in the ac when the program is finished.
 	 */
-	public static int clicked(int sp) {
-		String[] ral = new TextFileReader(File.ralFile).convertFileToStringArray();
-		int[] mem = new TextFileReader(File.memoryFile).convertFileToIntArray();
-		Memory memory = new Memory(mem);
-		RAM ram = new RAM(memory, sp);
+	public int clicked(int sp) {
+		ral = new TextFileReader(File.ralFile).convertFileToStringArray();
+		mem = new TextFileReader(File.memoryFile).convertFileToIntArray();
+		memory = new Memory(mem);
+		ram = new RAM(memory, sp);
 		return ram.startProgram(ral);
 	}
 }

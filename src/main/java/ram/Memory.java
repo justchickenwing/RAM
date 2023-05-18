@@ -1,22 +1,14 @@
 package ram;
 
 public class Memory {
-	private int[] space;
-	/**
-	 * Creates an instance of Memory with an int[n]
-	 * 
-	 * @param n - number of index
-	 */
-	public Memory(int n) {
-		space = new int[n];
-	}
+	private int[] memory;
 	/**
 	 * Creates an instance of Memory with an int[n]
 	 * 
 	 * @param memory - the int[] space
 	 */
 	public Memory(int[] memory) {
-		space = memory;
+		this.memory = memory;
 	}
 	/**
 	 * returns the value stored in the index
@@ -25,7 +17,7 @@ public class Memory {
 	 * @return value stored in the index
 	 */
 	public int getValue(int index) {
-		return space[index];
+		return memory[index];
 	}
 	/**
 	 * stores the value in the array with the desired index
@@ -34,7 +26,7 @@ public class Memory {
 	 * @param value - value that has to be stored
 	 */
 	public void setAtIndexValue(int index, int value) {
-		space[index] = value;
+		memory[index] = value;
 	}
 	/**
 	 * get the number of index
@@ -42,6 +34,6 @@ public class Memory {
 	 * @return the number of index
 	 */
 	public int[] getSpace() {
-		return space;
+		return memory;
 	}
 }
