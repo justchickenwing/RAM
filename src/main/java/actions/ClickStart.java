@@ -13,8 +13,8 @@ public class ClickStart {
 	 * @return the value that is stored in the ac when the program is finished.
 	 */
 	public static int clicked(int sp) {
-		String[] ral = TextFileReader.convertFileToStringArray(File.ralFile.getPath());
-		int[] mem = TextFileReader.convertFileToIntArray(File.memoryFile.getPath());
+		String[] ral = new TextFileReader(File.ralFile).convertFileToStringArray();
+		int[] mem = new TextFileReader(File.memoryFile).convertFileToIntArray();
 		Memory memory = new Memory(mem);
 		RAM ram = new RAM(memory, sp);
 		return ram.startProgram(ral);

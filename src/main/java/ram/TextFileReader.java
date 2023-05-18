@@ -6,20 +6,21 @@ import java.io.IOException;
 import actions.Alert;
 public class TextFileReader {
 	private static BufferedReader br;
-    /**
-     * private constructor to avoid initializing out of the class
-     */
-    private TextFileReader() {}
+	private File file;
+	
+    public TextFileReader(File file) {
+    	this.file = file;
+    }
     /**
      * Reads the file and stores it in the BufferedReader.
      * 
      * @param filename - the file which has to be read.
      */
-    private static void readFile(String filename) {
+    private void readFile() {
     	try {
-			br = new BufferedReader(new FileReader(filename));
+			br = new BufferedReader(new FileReader(file.getPath()));
 		} catch (FileNotFoundException e) {
-			Alert.show("File not found:\n" + filename);	
+			Alert.show("File not found:\n" + file.getPath());	
 		}
     }
     /**
@@ -28,15 +29,15 @@ public class TextFileReader {
      * @param filename - the file which lines has to be counted.
      * @return number of lines.
      */
-    private static int countLines(String filename) {
-    	readFile(filename);
+    private int countLines() {
+    	readFile();
     	int counter = 0;
-        try(BufferedReader br = new BufferedReader(new FileReader(filename))) {
+        try(BufferedReader br = new BufferedReader(new FileReader(file.getPath()))) {
 			while (br.readLine() != null) {
 			    counter++;
 			}
 		} catch (IOException e) {
-			Alert.show("Invalid file!\nPlease check your file:\n" + filename);
+			Alert.show("Invalid file!\nPlease check your file:\n" + file.getPath());
 		}
     	return counter;
     }
@@ -46,15 +47,15 @@ public class TextFileReader {
      * @param filename - the file which has to be converted
      * @return a String Array filled with the lines of the file.
      */
-    public static String[] convertFileToStringArray(String filename) {
-    	readFile(filename);
-    	int index = countLines(filename);
+    public String[] convertFileToStringArray() {
+    	readFile();
+    	int index = countLines();
     	String[] ral = new String[index];
         for (int i = 0; i < index; i++) {
         	try {
 				ral[i] = br.readLine();
 			} catch (IOException e) {
-				Alert.show("Invalid file!\nPlease check your file:\n" + filename);
+				Alert.show("Invalid file!\nPlease check your file:\n" + file.getPath());
 			}
         }
     	return ral;
@@ -64,9 +65,9 @@ public class TextFileReader {
      * @param filename - the file which has to be converted
      * @return an int Array filled with the lines of the file.
      */
-    public static int[] convertFileToIntArray(String filename) {
-    	readFile(filename);
-    	int index = countLines(filename);
+    public int[] convertFileToIntArray() {
+    	readFile();
+    	int index = countLines();
     	int[] inArray = new int[index];
     		String line;
             for (int i = 0; i < index; i++) {

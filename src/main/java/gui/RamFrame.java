@@ -49,8 +49,8 @@ public class RamFrame extends javax.swing.JFrame {
 	 */
     public RamFrame() {
     	// Read the input
-    	ralArray = TextFileReader.convertFileToStringArray(File.ralFile.getPath());
-        memArray = TextFileReader.convertFileToStringArray(File.memoryFile.getPath());
+    	ralArray = new TextFileReader(File.ralFile).convertFileToStringArray();
+        memArray = new TextFileReader(File.memoryFile).convertFileToStringArray();
         // Frame conf
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("myRAM");
