@@ -1,5 +1,4 @@
 package actions;
-
 import gui.RamFrame;
 
 public class Main {

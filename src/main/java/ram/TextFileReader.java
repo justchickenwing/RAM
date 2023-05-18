@@ -1,10 +1,9 @@
 package ram;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+import actions.Alert;
 public class TextFileReader {
 	
 	private static BufferedReader br;
@@ -21,8 +20,7 @@ public class TextFileReader {
     	try {
 			br = new BufferedReader(new FileReader(filename));
 		} catch (FileNotFoundException e) {
-			System.err.println("Memory file not found. The program will exit with an error code.");
-			System.exit(1);		
+			Alert.show("File not found:\n" + filename);	
 		}
     }
     /**
@@ -39,7 +37,7 @@ public class TextFileReader {
         	try {
 				ral[i] = br.readLine();
 			} catch (IOException e) {
-				e.printStackTrace();
+				Alert.show("Invalid file!\nPlease check your file:\n" + filename);
 			}
         }
     	return ral;
@@ -59,7 +57,9 @@ public class TextFileReader {
 					line = br.readLine();
 					inArray[i] = Integer.parseInt(line);
 				} catch (IOException e) {
-					e.printStackTrace();
+					Alert.show("Invalid memory! Please check your file.");
+				} catch (NumberFormatException e) {
+					Alert.show("Invalid format!\nPlease check your memoy-file.");
 				}
             }
     	return inArray;
@@ -78,7 +78,7 @@ public class TextFileReader {
 			    counter++;
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			Alert.show("Invalid file!\nPlease check your file:\n" + filename);
 		}
     	return counter;
     }

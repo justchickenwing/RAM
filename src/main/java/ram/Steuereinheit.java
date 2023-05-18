@@ -1,7 +1,6 @@
 package ram;
 
 public abstract class Steuereinheit {
-	
 	private int ac;
 	private Memory memory;
 	/**

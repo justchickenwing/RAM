@@ -1,5 +1,4 @@
 package actions;
-
 import ram.Memory;
 import ram.RAM;
 import ram.TextFileReader;

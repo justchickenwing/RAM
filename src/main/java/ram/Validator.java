@@ -1,7 +1,6 @@
 package ram;
-
 import java.util.Arrays;
-
+import actions.Alert;
 public class Validator {
 	private Validator() {}
 	/**
@@ -15,7 +14,7 @@ public class Validator {
 		boolean isValid = true;
 		while (isValid) {
 			for (String command : program) {
-				isValid = isValidCommand(command);
+				isValidCommand(command);
 			}
 			return true;
 		}	
@@ -29,25 +28,25 @@ public class Validator {
 	 * In a next step it compares the snipped command with the legal commands.
 	 * 
 	 * @param command - the command which is to validate
-	 * @return true if valid command; false otherwise
 	 */
-	public static boolean isValidCommand(String command) {
-		if (command.length() >= 3) {
+	public static void isValidCommand(String command) {
+		String[] validCommands = {"ADD", "SUB", "LDA", "STA", "LDI", "STI", "JMP", "JMZ", "HLT"};
+		try {
 			String commandName = command.substring(0, 3);
-			if (command.length() > 3) {
-				String commandArgu = command.substring(4);
-				if (!commandArgu.matches("\\d+")) {
-					System.err.println("The input is invalid. The program will exit with an error code.");
-					System.exit(1);
-				}
+			if (!Arrays.asList(validCommands).contains(commandName)) {
+				Alert.show("Invalid command!\nPlease check:\n" + command);
 			}
-			String[] validCommands = {"ADD", "SUB", "LDA", "STA", "LDI", "STI", "JMP", "JMZ", "HLT"};
-			if (Arrays.asList(validCommands).contains(commandName)) {
-				return true;
-			}
+		} catch (StringIndexOutOfBoundsException e) {
+			Alert.show("Invalid command!\nPlease check:\n" + command);
 		}
-		throw new IllegalArgumentException(
-				"Unknown command: " + command
-		);
-	}	
-}
+		
+		if (command.length() > 3) {
+			try {
+				Integer.parseInt(command.substring(4));
+			} catch (IllegalArgumentException e) {
+				Alert.show("Invalid command!\nPlease check:\n" + command);
+			}
+		}			
+	}
+}		
+
