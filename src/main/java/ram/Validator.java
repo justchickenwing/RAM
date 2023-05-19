@@ -41,6 +41,9 @@ public class Validator {
 		}
 		
 		if (command.length() > 3) {
+			if (command.charAt(3) != ' ') {
+				Alert.show("Invalid command!\nPlease check:\n" + command);
+			}
 			try {
 				Integer.parseInt(command.substring(4));
 			} catch (IllegalArgumentException e) {
