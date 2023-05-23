@@ -40,8 +40,8 @@ JMP 2
 
 /**
  * e.g. multiply program
- * 5 * 5
- * startpoint: 2 (LDA 0)
+ * 7 * 5
+ * startpoint: 2 (LDA 1)
  */
 
 Memory:
