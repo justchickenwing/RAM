@@ -24,3 +24,4 @@ Bitte beachte folgende Anleitung:
 3. Starte das Programm.
 4. Überprüfe in der angezeigten Liste deine Eingabe und wähle den Startpunkt deines Programms.
 5. Klicke auf Start.
+6. have fun
